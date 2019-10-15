@@ -6,13 +6,13 @@ namespace DiningPhilo
 {
     class Program
     {
-        static string[] philosophers = new string[] {
+        static string[] names = new string[] {
             "Aristotle", "Kant", "Plato", 
             "Confusius","Hume", "Descartes" };
 
         static void Main(string[] args)
         {
-            int max = philosophers.Length;
+            int max = names.Length;
             Console.WriteLine(max + " philosophers will dine");
                         
             var chopsticks = new List<object>();
@@ -27,7 +27,7 @@ namespace DiningPhilo
                 int left = (max+i-1)% max;
                 int right = i % max;
                 int tmpI = i; 
-                tasks.Add(new Task(() => new Philosopher(philosophers[tmpI], chopsticks[left], chopsticks[right]).Dine()));              
+                tasks.Add(new Task(() => new Philosopher(names[tmpI], chopsticks[left], chopsticks[right]).Dine()));              
             }
                         
             Parallel.ForEach(tasks, t => t.Start());
